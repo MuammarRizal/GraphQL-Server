@@ -21,6 +21,7 @@ const typeDefs = `#graphql
     type Query{
       books :[Book]
       members : [Member!]!
+      book(id: ID!) : Book
       hello: String
       greeting: String
     }
@@ -29,6 +30,7 @@ const typeDefs = `#graphql
 const resolvers = {
   Query: {
     books: () => books,
+    book: (_, args) => books.find((book) => book.id === args.id),
     members: () => members,
     hello: () => "Hello world",
     greeting: () => "Muammar Rizal",
